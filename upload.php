@@ -44,8 +44,24 @@ if($fezUpload == true){
     $sql = "INSERT INTO arquivo(nome_arquivo) values ('$nomeArquivo.$extensao')";
     $resultado = mysqli_query($conexao,$sql);
     if($resultado != false){
-        header("location:index.php");
-    }
+         
+
+if(isset($_POST['nome_arquivo'])){
+   $apagou =  unlink(__DIR__ . $pastaDestino . $_POST['nome_arquivo']);
+}
+if($apgou == true){
+    $sqk = "DELETE FROM  arquivo WHERE nome_arquivo='"
+    .$_POST['nome_arquivo'] . "'";
+    $resultado2 = mysqli_query($conexao,$sql);
+    if($resultado2 == false){
+        echo"Erro ao apagar o  arquivo no banco de dados.";
+        die();
+    } 
+}else{
+    echo"Erro ao apagar o arquivo antigo.";
+}
+header("location:index.php");
+}
 }
 else{
     echo "Erro ao mover o arquivo.";
