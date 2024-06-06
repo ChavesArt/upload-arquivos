@@ -25,5 +25,25 @@ else{
         <input type="file" name="arquivo"> <br> <br>
         <input type="submit" value="Fazer upload" name="submit">
     </form>
+    <br>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th> Nome do Arquivo</th>
+                <th colspan ="2">Opções</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            foreach($arquivos as $arquivo){
+                echo "<tr><td>" .$arquivo['nome_arquivo'] . "</td></tr>";
+                echo "<td><a href="alterar.php?nome_arquivo=".
+                $arquivo['nome_arquivo]."'>Alterar</td>";
+                echo"<td><button>Excluir</button></td></tr>
+            }
+                ?>
+        </tbody>
+    </table>
 </body>
 </html>
