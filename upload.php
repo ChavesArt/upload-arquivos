@@ -37,10 +37,15 @@ $novoNomeArquivo = uniqid();
 //se deu tudo certo até aqui faz o upload
 var_dump($pastaDestino. $_FILES['arquivo']['name']);
 var_dump(__DIR__.$pastaDestino. $_FILES['arquivo']['name']);
-$fezUpload= move_uploaded_file($_FILES['arquivo']['tmp_name'],__DIR__  .  $pastaDestino. $novoNomeArquivo . "."$extensao);
+$fezUpload= move_uploaded_file($_FILES['arquivo']['tmp_name'],__DIR__  .  $pastaDestino. $novoNomeArquivo . "." .$extensao);
 
 if($fezUpload == true){
-    header("location:index.php");
+    $conexao = mysqli_connect("localhost","root","","uploadarquivo");
+    $sql = "INSERT INTO arquivo(nome_arquivo) values ('$nomeArquivo.$extensao')";
+    $resultado = mysqli_query($conexao,$sql);
+    if($resultado != false){
+        header("location:index.php");
+    }
 }
 else{
     echo "Erro ao mover o arquivo.";

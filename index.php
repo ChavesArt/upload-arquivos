@@ -1,3 +1,17 @@
+<?php
+
+$conexao = mysqli_connect("localhost","rioot","","uploadarquivo");
+$sql ="SELECT * FROM  arquivo";
+$resultado = mysqli_connect($conexao,$sql);
+if($resultado !=false){
+    $arquivos = mysqli_fetch_all($resultado,MYSQLI_BOTH);
+}
+else{
+    echo "Erro ao executar comando SQL.";
+    die();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
