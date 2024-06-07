@@ -1,8 +1,8 @@
 <?php
 
-$conexao = mysqli_connect("localhost","rioot","","uploadarquivo");
+$conexao = mysqli_connect("localhost","root","","uploadarquivo");
 $sql ="SELECT * FROM  arquivo";
-$resultado = mysqli_connect($conexao,$sql);
+$resultado = mysqli_query($conexao,$sql);
 if($resultado !=false){
     $arquivos = mysqli_fetch_all($resultado,MYSQLI_BOTH);
 }
@@ -36,14 +36,20 @@ else{
         </thead>
         <tbody>
             <?php
-            foreach($arquivos as $arquivo){
-                echo "<tr><td>" .$arquivo['nome_arquivo'] . "</td></tr>";
-                echo "<td><a href="alterar.php?nome_arquivo=".
-                $arquivo['nome_arquivo]."'>Alterar</td>";
-                echo"<td><button>Excluir</button></td></tr>
+            foreach ($arquivos as $arquivo){
+                echo "<tr><td>" .$arquivo['nome_arquivo'] . "</td>";
+                echo "<td><a href='alterar.php?nome_arquivo=".
+                $arquivo['nome_arquivo']."'>Alterar</td>";
+                echo "<td><button>Excluir</button></td></tr>";
             }
                 ?>
         </tbody>
+
     </table>
+            <script>
+                function excluir(nome_arquivo){
+                    confirm("Você tem certeza que deseja excluir o arquivo:" + nome_arquivo);
+                }
+            </script>
 </body>
 </html>

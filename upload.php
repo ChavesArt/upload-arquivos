@@ -1,6 +1,6 @@
 <?php
 
-$pastaDestino = "/uploads";
+$pastaDestino = "/uploads/";
 
 $nomeArquivo = $_FILES['arquivo']['name'];
 
@@ -37,32 +37,31 @@ $novoNomeArquivo = uniqid();
 //se deu tudo certo até aqui faz o upload
 var_dump($pastaDestino. $_FILES['arquivo']['name']);
 var_dump(__DIR__.$pastaDestino. $_FILES['arquivo']['name']);
-$fezUpload= move_uploaded_file($_FILES['arquivo']['tmp_name'],__DIR__  .  $pastaDestino. $novoNomeArquivo . "." .$extensao);
+$fezUpload= move_uploaded_file($_FILES['arquivo']['tmp_name'], __DIR__  .  $pastaDestino. $novoNomeArquivo . "." .$extensao);
 
 if($fezUpload == true){
     $conexao = mysqli_connect("localhost","root","","uploadarquivo");
-    $sql = "INSERT INTO arquivo(nome_arquivo) values ('$nomeArquivo.$extensao')";
+    $sql = "INSERT INTO arquivo(nome_arquivo) values ('$novoNomeArquivo.$extensao')";
     $resultado = mysqli_query($conexao,$sql);
     if($resultado != false){
          
 
-if(isset($_POST['nome_arquivo'])){
-   $apagou =  unlink(__DIR__ . $pastaDestino . $_POST['nome_arquivo']);
-}
-if($apgou == true){
-    $sqk = "DELETE FROM  arquivo WHERE nome_arquivo='"
-    .$_POST['nome_arquivo'] . "'";
-    $resultado2 = mysqli_query($conexao,$sql);
-    if($resultado2 == false){
-        echo"Erro ao apagar o  arquivo no banco de dados.";
-        die();
-    } 
-}else{
-    echo"Erro ao apagar o arquivo antigo.";
-}
-header("location:index.php");
-}
-}
-else{
+        if(isset($_POST['nome_arquivo'])){
+            $apagou =  unlink(__DIR__ . $pastaDestino . $_POST['nome_arquivo']);
+            if($apagou == true){
+                $sql = "DELETE FROM  arquivo WHERE nome_arquivo='"
+                .$_POST['nome_arquivo'] . "'";
+                $resultado2 = mysqli_query($conexao,$sql);
+                if($resultado2 == false){
+                    echo"Erro ao apagar o  arquivo no banco de dados.";
+                    die();
+                } 
+            } else{
+                echo"Erro ao apagar o arquivo antigo.";
+            }
+        }
+        header("location:index.php");
+    }
+} else {
     echo "Erro ao mover o arquivo.";
 }

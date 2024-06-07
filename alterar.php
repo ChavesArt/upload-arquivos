@@ -11,8 +11,8 @@ $nome_arquivo = $_GET['nome_arquivo'];
 </head>
 <body>
     <form action="upload.php" method="post" enctype="multipart/form-data">
-        Alterando o arquivo:<?php= $nome_arquivo?> <br>
-        <input type="hidden" name="nome_arquivo" value=<?php $nome_arquivo?>>
+        Alterando o arquivo:<?= $nome_arquivo?> <br>
+        <input type="hidden" name="nome_arquivo" value=<?= $nome_arquivo?>>
         <input type="file" name="arquivo"> <br> <br>
         <input type="submit" value="Fazer upload" name="submit">
     </form>
