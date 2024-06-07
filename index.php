@@ -37,10 +37,23 @@ else{
         <tbody>
             <?php
             foreach ($arquivos as $arquivo){
-                echo "<tr><td>" .$arquivo['nome_arquivo'] . "</td>";
-                echo "<td><a href='alterar.php?nome_arquivo=".
-                $arquivo['nome_arquivo']."'>Alterar</td>";
-                echo "<td><button onclick = 'excluir(\""  . $arquivo['nome_arquivo']  . "\");'>Excluir</button></td></tr>";
+                $arq = $arquivo['nome_arquivo'];
+                echo"<tr>";//iniciar a linha
+                echo "<td>$arq</td>";// 1 coluna com o nome do arquivo
+                echo"<td>";//iniciar a  2 coluna 
+                echo"<a ";// abriu o link (abriu a tag a)
+                echo "href='alterar.php?nome_arquivo=$arq'>";//inseriu o link
+                echo "Alterar";//imprimiu o texto da tag a
+                echo"</a>";//fechei o link(tag a)
+                echo "</td>";//fechei a 2 coluna
+                echo"<td>";// abri a 3 coluna
+                echo "<button";//abrir o botão
+                echo" onclick =";//criou o atributo onclink
+                echo"'excluir(\"$arq\");'>";//chamamos a função excluir
+                echo"Excluir";//mostrar o texto do botão
+                echo "</button>";//fechar o botão
+                echo"</td>";//fechar a 3 coluna
+                echo"</tr>";//fechar a linha
             }
                 ?>
         </tbody>
