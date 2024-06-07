@@ -57,7 +57,7 @@ if($fezUpload == true){
                     die();
                 } 
             } else{
-                echo"Erro ao apagar o arquivo antigo.";
+                echo "Erro ao apagar o arquivo antigo.";
             }
         }
         header("location:index.php");

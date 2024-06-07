@@ -40,7 +40,7 @@ else{
                 echo "<tr><td>" .$arquivo['nome_arquivo'] . "</td>";
                 echo "<td><a href='alterar.php?nome_arquivo=".
                 $arquivo['nome_arquivo']."'>Alterar</td>";
-                echo "<td><button>Excluir</button></td></tr>";
+                echo "<td><button onclick = 'excluir(\""  . $arquivo['nome_arquivo']  . "\");'>Excluir</button></td></tr>";
             }
                 ?>
         </tbody>
@@ -48,7 +48,7 @@ else{
     </table>
             <script>
                 function excluir(nome_arquivo){
-                    confirm("Você tem certeza que deseja excluir o arquivo:" + nome_arquivo);
+                    confirm("Você tem certeza que deseja excluir o arquivo:" + nome_arquivo + "?");
                 }
             </script>
 </body>
