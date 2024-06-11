@@ -1,7 +1,7 @@
 <?php
 $conexao = mysqli_connect("localhost","root","","uploadarquivo");
 $nome_arquivo =$_GET['nome_arquivo'];
-$pasta_destino = "/uploads/";
+$pastaDestino = "/uploads/";
 $apagou =  unlink(__DIR__ . $pastaDestino . $nome_arquivo);
 if($apagou == true){
     $sql = "DELETE FROM  arquivo WHERE nome_arquivo='$nome_arquivo'";
@@ -12,5 +12,7 @@ if($apagou == true){
     } 
 } else{
     echo "Erro ao apagar o arquivo antigo.";
+    die();
 }
+header("location:index.php");
 ?>
