@@ -30,7 +30,7 @@ else{
     <table>
         <thead>
             <tr>
-                <th> Nome do Arquivo</th>
+                <th colspan="2"> Nome do Arquivo</th>
                 <th colspan ="2">Opções</th>
             </tr>
         </thead>
@@ -39,7 +39,8 @@ else{
             foreach ($arquivos as $arquivo){
                 $arq = $arquivo['nome_arquivo'];
                 echo"<tr>";//iniciar a linha
-                echo "<td><a href = 'uploads/$arq></a>$arq</td>";// 1 coluna com o nome do arquivo
+                echo"<td><img src='uploads/$arq' width = '100px' height = '100px'> </td>";
+                echo "<td><a href = 'uploads/$arq'>$arq</a></td>";// 1 coluna com o nome do arquivo
                 echo"<td>";//iniciar a  2 coluna 
                 echo"<a ";// abriu o link (abriu a tag a)
                 echo "href='alterar.php?nome_arquivo=$arq'>";//inseriu o link
